@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import VisitorSidebar from "../Components/VisitorSidebar";
 
 interface Request {
@@ -16,7 +15,6 @@ const VisitorRequests: React.FC = () => {
   const [formData, setFormData] = useState({ newVisitDate: "", reason: "" });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchRequests();
