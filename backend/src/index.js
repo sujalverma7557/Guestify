@@ -13,12 +13,14 @@ import visitRequestRoute from "../routes/visitRequestRoute.js";
 dotenv.config();
 const app = express();
 
+connectDB();
+
+
 app.use(cors({
-  origin: "*",
+  origin: "https://guestify-1jso.vercel.app",
   credentials: true
 }));
 app.use(express.json());
-connectDB();
 
 
 app.get("/", (req, res) => {
