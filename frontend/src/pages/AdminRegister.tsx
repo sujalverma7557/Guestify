@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const AdminRegister: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
@@ -16,7 +18,7 @@ const AdminRegister: React.FC = () => {
     setError("");
 
     try {
-      await axios.post("http://localhost:5001/api/admin/register", formData);
+      await axios.post(`${API_URL}/api/admin/register`, formData);
       alert("Admin registered successfully");
       navigate("/admin/dashboard");
     } catch (err) {

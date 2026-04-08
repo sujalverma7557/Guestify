@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const VisitorLogin: React.FC = () => {
   const [formData, setFormData] = useState({ "email": "", "password": "" });
@@ -64,9 +65,9 @@ const VisitorLogin: React.FC = () => {
 
         <p className="text-center text-gray-600 mt-4">
           Don't have an account?{" "}
-          <a href="/register" className="text-blue-500 hover:underline">
+          <Link to="/register" className="text-blue-500 hover:underline">
             Register here
-          </a>
+          </Link>
         </p>
       </div>
     </div>

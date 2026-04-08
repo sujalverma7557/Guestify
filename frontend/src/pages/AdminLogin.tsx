@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AdminLogin: React.FC = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -16,8 +18,7 @@ const AdminLogin: React.FC = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:5001/api/admin/login", formData);
-      localStorage.setItem("token", response.data.token);
+      const response = await axios.post(`${API_URL}/api/admin/login`, formData);      localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", "admin");
       navigate("/admin/dashboard");
     } catch (err) {
@@ -58,9 +59,9 @@ const AdminLogin: React.FC = () => {
 
         <p className="text-center text-gray-600 mt-4">
           Don't have an account?{" "}
-          <a href="/admin/register" className="text-blue-500 hover:underline">
+          <Link to="/admin/register" className="text-blue-500 hover:underline">
             Register here
-          </a>
+          </Link>
         </p>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import VisitorSidebar from "../Components/VisitorSidebar";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const VisitorProfile: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", phone: "" });
@@ -20,7 +21,7 @@ const VisitorProfile: React.FC = () => {
         return;
       }
 
-      const response = await axios.get(`http://localhost:5001/api/visitors/${visitorId}`, {
+      const response = await axios.get(`${API_URL}/api/visitors/${visitorId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFormData({ name: response.data.name, phone: response.data.phone });
@@ -42,7 +43,7 @@ const VisitorProfile: React.FC = () => {
       const visitorId = localStorage.getItem("visitorId");
       const token = localStorage.getItem("token");
 
-      await axios.put(`http://localhost:5001/api/visitors/update/${visitorId}`, formData, {
+      await axios.put(`${API_URL}/api/visitors/update/${visitorId}`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

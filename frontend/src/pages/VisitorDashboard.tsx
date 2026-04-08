@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaUser, FaEnvelope, FaPhone, FaCalendarAlt, FaCheckCircle, FaTimesCircle, FaClock } from "react-icons/fa";
 import VisitorSidebar from "../Components/VisitorSidebar";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface Visitor {
   _id: string;
@@ -29,7 +30,7 @@ const VisitorDashboard: React.FC = () => {
         return;
       }
 
-      const response = await axios.get(`http://localhost:5001/api/visitors/${visitorId}`, {
+      const response = await axios.get(`${API_URL}/api/visitors/${visitorId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setVisitor(response.data);

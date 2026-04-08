@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AdminSidebar from "../Components/AdminSidebar";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface Visitor {
   _id: string;
@@ -23,8 +24,7 @@ const AdminDashboard: React.FC = () => {
 
   const fetchVisitors = async () => {
     try {
-      const response = await axios.get(`http://localhost:5001/api/visitors?status=${statusFilter}&search=${search}`);
-      setVisitors([...response.data]);
+      const response = await axios.get(`${API_URL}/api/visitors?status=${statusFilter}&search=${search}`);      setVisitors([...response.data]);
       console.log("vis",visitors);
       
 
@@ -42,8 +42,7 @@ const AdminDashboard: React.FC = () => {
     console.log("in",visitorId,"-> ",newStatus);
     
     try {
-      await axios.put(`http://localhost:5001/api/visitors/approve/${visitorId}`, { "status": newStatus });
-      fetchVisitors();
+      await axios.put(`${API_URL}/api/visitors/approve/${visitorId}`, { status: newStatus });      fetchVisitors();
       console.log("done")
     } catch (error) {
       console.error("Error updating visitor status:", error);

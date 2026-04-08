@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import VisitorSidebar from "../Components/VisitorSidebar";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface Request {
   _id: string;
@@ -23,7 +24,7 @@ const VisitorRequests: React.FC = () => {
   const fetchRequests = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5001/api/visitrequests", {
+      const response = await axios.get(`${API_URL}/api/visitrequests`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(response.data);
@@ -43,7 +44,7 @@ const VisitorRequests: React.FC = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5001/api/visitrequests/reschedule", formData, {
+      await axios.post(`${API_URL}/api/visitrequests/reschedule`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

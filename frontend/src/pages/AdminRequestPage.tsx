@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AdminSidebar from "../Components/AdminSidebar";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface Request {
   _id: string;
@@ -22,7 +23,7 @@ const AdminRequests: React.FC = () => {
   const fetchRequests = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5001/api/visitrequests", {
+      const response = await axios.get(`${API_URL}/api/visitrequests`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(response.data);
@@ -35,7 +36,7 @@ const AdminRequests: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5001/api/visitrequests/${requestId}`,
+        `${API_URL}/api/visitrequests/${requestId}`,
         { status: newStatus },
         {
           headers: { Authorization: `Bearer ${token}` },
